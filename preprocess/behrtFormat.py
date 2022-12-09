@@ -12,7 +12,7 @@ config= {
     'col_name': ''  # column name for ICD/Med code
 }
 
-diagnoses = read_parquet(spark.sqlContext, config['diagnoses']).select(['patid','eventdate',config['col_name']]).na.drop().select(['patid','eventdate', config['col_name']])
+diagnoses = read_parquet(spark.sqlContext, config['diagnoses']).select(['patid', 'eventdate', config['col_name']]).na.drop().select(['patid','eventdate', config['col_name']])
 demographic = read_parquet(spark.sqlContext, config['demographic'])
 
 diagnoses = diagnoses.na.drop()

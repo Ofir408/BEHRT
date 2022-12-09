@@ -1,3 +1,5 @@
+import ast
+
 import numpy as np
 from torch.utils.data.dataset import Dataset
 from dataLoader.utils import seq_padding,code2index, position_idx, index_seg
@@ -23,9 +25,9 @@ class NextVisit(Dataset):
         return: age, code, position, segmentation, mask, label
         """
         # cut data
-        age = self.age[index]
-        code = self.code[index]
-        label = self.label[index]
+        age = ast.literal_eval(self.age[index])
+        code = ast.literal_eval(self.code[index])
+        label = ast.literal_eval(self.label[index])
         patid = self.patid[index]
 
         # extract data

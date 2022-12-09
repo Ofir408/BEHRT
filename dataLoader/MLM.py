@@ -1,3 +1,5 @@
+import ast
+
 from torch.utils.data.dataset import Dataset
 import numpy as np
 from dataLoader.utils import seq_padding,position_idx,index_seg,random_mask
@@ -18,8 +20,8 @@ class MLMLoader(Dataset):
         """
 
         # extract data
-        age = self.age[index][(-self.max_len+1):]
-        code = self.code[index][(-self.max_len+1):]
+        age = ast.literal_eval(self.age[index])[(-self.max_len+1):]
+        code = ast.literal_eval(self.code[index])[(-self.max_len+1):]
 
         # avoid data cut with first element to be 'SEP'
         if code[0] != 'SEP':

@@ -1,13 +1,14 @@
 import random
+import ast
 
 
 def code2index(tokens, token2idx, mask_token=None):
     output_tokens = []
     for i, token in enumerate(tokens):
-        if token==mask_token:
+        if token == mask_token:
             output_tokens.append(token2idx['UNK'])
         else:
-            output_tokens.append(token2idx.get(token, token2idx['UNK']))
+            output_tokens.append(token2idx.get(str(token), token2idx['UNK']))
     return tokens, output_tokens
 
 
@@ -31,11 +32,11 @@ def random_mask(tokens, token2idx):
             # -> rest 10% randomly keep current token
 
             # append current token to output (we will predict these later
-            output_label.append(token2idx.get(token, token2idx['UNK']))
+            output_label.append(token2idx.get(str(token), token2idx['UNK']))
         else:
             # no masking token (will be ignored by loss function later)
             output_label.append(-1)
-            output_token.append(token2idx.get(token, token2idx['UNK']))
+            output_token.append(token2idx.get(str(token), token2idx['UNK']))
 
     return tokens, output_token, output_label
 
@@ -61,7 +62,7 @@ def position_idx(tokens, symbol='SEP'):
     flag = 0
 
     for token in tokens:
-        if token == symbol:
+        if str(token) == symbol:
             pos.append(flag)
             flag += 1
         else:
@@ -85,9 +86,9 @@ def seq_padding(tokens, max_len, token2idx=None, symbol=None, unkown=True):
             if i < token_len:
                 # 1 indicate UNK
                 if unkown:
-                    seq.append(token2idx.get(tokens[i], token2idx['UNK']))
+                    seq.append(token2idx.get(str(tokens[i]), token2idx['UNK']))
                 else:
-                    seq.append(token2idx.get(tokens[i]))
+                    seq.append(token2idx.get(str(tokens[i])))
             else:
                 seq.append(token2idx.get(symbol))
     return seq

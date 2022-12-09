@@ -1,0 +1,10 @@
+scikit-learn
+torch
+pytorch_pretrained_bert
+numpy
+pandas
+jupyter
+h5py
+pyarrow
+fastparquet
+jupyterlab
