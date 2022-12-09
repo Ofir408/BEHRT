@@ -1,0 +1,21 @@
+{
+  "MASK": 4,
+  "CLS": 3,
+  "SEP": 2,
+  "UNK": 1,
+  "PAD": 0,
+  "disease1": 5,
+  "disease2": 6,
+  "disease3": 7,
+  "disease4": 8,
+  "disease5": 9,
+  "disease6": 10,
+  "medication1": 11,
+  "medication2": 12,
+  "medication3": 13,
+  "medication4": 14,
+  "medication5": 15,
+  "medication6": 16,
+  "sex_men": 17,
+  "sex_woman": 18
+}
